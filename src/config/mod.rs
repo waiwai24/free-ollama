@@ -8,7 +8,7 @@ pub struct AppConfig {
 impl Default for AppConfig {
     fn default() -> Self {
         Self {
-            request_timeout: 5, // 默认超时时间5秒
+            request_timeout: 1,
         }
     }
 }

@@ -29,7 +29,7 @@ async fn main() {
                 .long("timeout")
                 .value_name("SECS")
                 .help("Request timeout in seconds")
-                .default_value("5")
+                .default_value("3")
         );
 
     let matches = app.get_matches();
@@ -38,7 +38,7 @@ async fn main() {
     let timeout: u64 = matches.get_one::<String>("timeout")
         .unwrap()
         .parse()
-        .unwrap_or(1); // 默认超时时间5秒
+        .unwrap_or(1);
     
     info!("Starting Ollama service discovery...");
     info!("Input file: {}", input_file);
