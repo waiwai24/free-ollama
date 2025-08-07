@@ -39,11 +39,7 @@ async fn main() {
         .unwrap()
         .parse()
         .unwrap_or(1);
-    
-    info!("Starting Ollama service discovery...");
-    info!("Input file: {}", input_file);
-    info!("Timeout: {}s", timeout);
-    
+        
     let targets = match CsvParser::parse_from_file(input_file) {
         Ok(targets) => targets,
         Err(e) => {
@@ -52,9 +48,6 @@ async fn main() {
         }
     };
     
-    info!("Parsed {} targets from CSV file", targets.len());
-    
-    // 使用简化版扫描器
     let services = match SimpleScanner::scan_services(targets, timeout).await {
         Ok(services) => services,
         Err(e) => {
@@ -65,16 +58,6 @@ async fn main() {
     
     let active_services_count = services.iter().filter(|s| s.is_active).count();
     
-    info!("Scan completed");
-    info!("Found {} active services out of {} total services", active_services_count, services.len());
-    
-    // 打印可用的IP
-    println!("\nActive Ollama services:");
-    for service in &services {
-        if service.is_active {
-            println!("  {} (response time: {}ms)", 
-                service.target.endpoint(), 
-                service.response_time.unwrap_or(0));
-        }
-    }
+    println!("Scan completed");
+    println!("Found {} active services out of {} total services", active_services_count, services.len());
 }

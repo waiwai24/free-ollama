@@ -1,4 +1,3 @@
-pub mod config;
 pub mod scanner;
 pub mod storage;
 pub mod utils;

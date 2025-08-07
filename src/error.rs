@@ -16,9 +16,6 @@ pub enum OllamaError {
     #[error("JSON parsing error: {0}")]
     Json(#[from] serde_json::Error),
     
-    #[error("Configuration error: {0}")]
-    Config(#[from] config::ConfigError),
-    
     #[error("Parse error: {0}")]
     ParseError(String),
     
