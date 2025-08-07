@@ -1,6 +1,6 @@
 use clap::{Arg, Command};
 use env_logger;
-use log::{info, error};
+use log::error;
 use std::process;
 
 use free_ollama::{
